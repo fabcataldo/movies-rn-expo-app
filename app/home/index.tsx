@@ -23,7 +23,7 @@ const HomeScreen = () => {
   return (
     <ScrollView>
       <View className="mt-10 pb-10" style={{ paddingTop: safeArea.top }}>
-        <Text className="text-3xl font-bold px-4 mb-2">HomeScreen</Text>
+        <Text className="text-3xl font-bold px-4 mb-2">MoviesApp</Text>
 
         <MainSlideshow movies={nowPlayingQuery.data ?? []} />
 
@@ -34,9 +34,10 @@ const HomeScreen = () => {
         />
 
         <MovieHorizontalList
-          movies={topRatedQuery.data ?? []}
+          movies={topRatedQuery.data?.pages.flat() ?? []}
           title="Mejor Calificadas"
           className="mb-5"
+          loadNextPage={topRatedQuery.fetchNextPage}
         />
 
         <MovieHorizontalList
